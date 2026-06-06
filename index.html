@@ -182,18 +182,185 @@
   .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+  /* ─── TABLET (≤ 900px) ─── */
   @media (max-width: 900px) {
-    nav { padding: 0 24px; } .nav-links { display: none; }
-    section, .hero { padding: 80px 24px; } .divider { margin: 0 24px; } footer { padding: 40px 24px; }
-    .hero-cards { grid-template-columns: repeat(2, 1fr); } .dashboard-grid { grid-template-columns: 1fr 1fr; }
-    .overview-grid { grid-template-columns: 1fr; } .overview-card.featured { grid-column: span 1; }
-    .semaforo-grid { grid-template-columns: 1fr; } .roadmap-timeline { grid-template-columns: 1fr; }
-    .roadmap-timeline::before { display: none; } .oport-grid { grid-template-columns: 1fr; }
-    .proximos-grid { grid-template-columns: 1fr; } .two-col { grid-template-columns: 1fr; }
-    .cta-section { padding: 40px 24px; } .next-service { flex-direction: column; }
-    .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    /* Nav */
+    nav { padding: 0 20px; height: 58px; }
+    .nav-links { display: none; }
+    .nav-badge { font-size: 10px; padding: 4px 11px; }
+
+    /* Layout */
+    section { padding: 64px 20px; }
+    .hero { padding: 100px 20px 60px; min-height: auto; }
+    .divider { margin: 0 20px; }
+    footer { padding: 40px 20px; }
+
+    /* Hero */
+    .hero-meta { gap: 10px; margin-bottom: 32px; }
+    .hero h1 { font-size: clamp(36px, 9vw, 56px); margin-bottom: 18px; }
+    .hero-sub { font-size: 16px; margin-bottom: 32px; }
+    .hero-cards { grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 32px; }
+    .hero-card { padding: 16px; }
+    .hero-card-value { font-size: 14px; }
+    .hero-cta { gap: 12px; }
+    .btn-primary { padding: 13px 22px; font-size: 14px; }
+
+    /* Section titles */
+    .section-title { font-size: clamp(24px, 6vw, 36px); }
+    .section-desc { font-size: 15px; margin-bottom: 40px; }
+
+    /* Overview */
+    .overview-grid { grid-template-columns: 1fr; }
+    .overview-card.featured { grid-column: span 1; }
+    .overview-card { padding: 24px; }
+    .overview-card blockquote { font-size: 17px; }
+    .overview-card p { font-size: 15px; }
+
+    /* Dashboard */
+    .dashboard-grid { grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+    .metric-card { padding: 20px; }
+    .metric-score { font-size: 34px; }
+
+    /* Semaforo */
+    .semaforo-grid { grid-template-columns: 1fr; gap: 12px; }
+
+    /* Analise */
+    .analise-header { padding: 18px 20px; flex-wrap: wrap; gap: 10px; }
+    .analise-body { padding: 20px; }
+    .two-col { grid-template-columns: 1fr; gap: 20px; }
+    .insight-list li { font-size: 13px; }
+    .insight-box { padding: 16px 18px; }
+    .insight-box-text { font-size: 13px; }
+
+    /* Oportunidades */
+    .oport-grid { grid-template-columns: 1fr; gap: 14px; }
+    .oport-card { padding: 22px; }
+
+    /* Roadmap */
+    .roadmap-timeline { grid-template-columns: 1fr; gap: 20px; }
+    .roadmap-timeline::before { display: none; }
+    .roadmap-phase { padding: 0; }
+    .roadmap-phase h3 { font-size: 18px; margin-bottom: 14px; }
+
+    /* Proximos */
+    .proximos-grid { grid-template-columns: 1fr; gap: 14px; }
+    .passo-card { padding: 24px; }
+
+    /* CTA */
+    .cta-section { padding: 40px 20px; }
+    .cta-section h2 { font-size: 26px; }
+    .cta-section p { font-size: 15px; }
+    .next-service { flex-direction: column; text-align: center; padding: 20px; gap: 16px; }
+    .next-service-price { text-align: center; }
+
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
   }
-  @media (max-width: 600px) { .hero-cards { grid-template-columns: 1fr 1fr; } .dashboard-grid { grid-template-columns: 1fr; } }
+
+  /* ─── MOBILE (≤ 480px) ─── */
+  @media (max-width: 480px) {
+    /* Nav — logo text shorter */
+    nav { padding: 0 16px; height: 54px; }
+    .nav-logo span { font-size: 11px; letter-spacing: 0.04em; }
+
+    /* Layout */
+    section { padding: 52px 16px; }
+    .hero { padding: 86px 16px 52px; }
+    .divider { margin: 0 16px; }
+    footer { padding: 36px 16px; }
+
+    /* Hero — key fixes */
+    .hero-label { font-size: 10px; letter-spacing: 0.1em; margin-bottom: 14px; }
+    .hero h1 { font-size: clamp(30px, 10vw, 44px); line-height: 1.08; margin-bottom: 16px; }
+    .hero-sub { font-size: 15px; margin-bottom: 28px; max-width: 100%; }
+    .hero-meta { gap: 8px; margin-bottom: 28px; }
+    .badge { font-size: 10px; padding: 5px 12px; }
+    .hero-cards { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+    .hero-card { padding: 14px 12px; }
+    .hero-card-label { font-size: 9px; }
+    .hero-card-value { font-size: 13px; line-height: 1.3; }
+    .hero-cta { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .btn-primary { width: 100%; justify-content: center; padding: 14px 20px; }
+    .btn-ghost { font-size: 14px; }
+
+    /* Section */
+    .section-title { font-size: clamp(22px, 7vw, 30px); }
+    .section-desc { font-size: 14px; margin-bottom: 32px; }
+    .section-label { font-size: 10px; }
+
+    /* Dashboard — single column on very small screens */
+    .dashboard-grid { grid-template-columns: 1fr; gap: 12px; }
+    .metric-card { padding: 18px; }
+    .metric-score { font-size: 38px; }
+    .metric-desc { font-size: 12px; }
+
+    /* Overview */
+    .overview-card { padding: 20px; }
+    .overview-card blockquote { font-size: 15px; padding-left: 16px; }
+    .overview-card p { font-size: 14px; }
+    .tag { font-size: 11px; padding: 4px 10px; }
+
+    /* Semaforo */
+    .semaforo-item { padding: 16px; gap: 12px; }
+    .semaforo-text h4 { font-size: 13px; }
+    .semaforo-text p { font-size: 12px; }
+
+    /* Analise */
+    .analise-icon { width: 36px; height: 36px; font-size: 16px; }
+    .analise-header h3 { font-size: 14px; }
+    .analise-header { padding: 16px; gap: 8px; }
+    .analise-body { padding: 18px 16px; }
+    .col-label { font-size: 11px; }
+    .insight-list li { font-size: 13px; gap: 10px; }
+    .insight-box { padding: 14px 16px; margin-top: 18px; }
+    .insight-box-label { font-size: 9px; }
+    .insight-box-text { font-size: 13px; }
+
+    /* Oportunidades */
+    .oport-card { padding: 20px; }
+    .oport-num { font-size: 10px; }
+    .oport-card h3 { font-size: 15px; }
+    .oport-card p { font-size: 13px; }
+    .oport-impact { font-size: 10px; }
+
+    /* Roadmap */
+    .roadmap-phase h3 { font-size: 17px; }
+    .roadmap-items li { font-size: 13px; padding: 9px 11px; }
+    .phase-num { font-size: 10px; }
+
+    /* Próximos */
+    .passo-card { padding: 20px; gap: 12px; }
+    .passo-num { width: 36px; height: 36px; font-size: 14px; }
+    .passo-card h3 { font-size: 14px; }
+    .passo-card p { font-size: 13px; }
+    .passo-deadline { font-size: 10px; }
+
+    /* CTA */
+    .cta-section { padding: 32px 16px; border-radius: 16px; }
+    .cta-section h2 { font-size: 22px; }
+    .cta-buttons { flex-direction: column; align-items: stretch; }
+    .btn-whatsapp { justify-content: center; }
+    .btn-ghost { justify-content: center; font-size: 14px; }
+    .next-service { padding: 18px 16px; }
+    .next-service h4 { font-size: 16px; }
+    .next-service-price .price { font-size: 20px; }
+
+    /* Footer */
+    .footer-logo .ym-text { font-size: 15px; }
+    .footer-brand p { font-size: 13px; }
+    .footer-col a { font-size: 13px; }
+    .footer-bottom p { font-size: 11px; }
+  }
+
+  /* ─── VERY SMALL (≤ 360px) ─── */
+  @media (max-width: 360px) {
+    .hero h1 { font-size: 28px; }
+    .hero-cards { grid-template-columns: 1fr; }
+    .hero-card-value { font-size: 13px; }
+    .metric-score { font-size: 34px; }
+    .overview-card blockquote { font-size: 14px; }
+  }
 </style>
 </head>
 <body>
