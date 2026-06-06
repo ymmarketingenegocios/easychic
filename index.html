@@ -1,1 +1,818 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raio-X Estratégico — Easy Chic | YM Marketing & Negócios</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #0055E5;
+    --azul-claro: #1A6FE8;
+    --branco: #111827;
+    --cinza-medio: #6B7280;
+    --verde: #059669;
+    --amarelo: #B45309;
+    --vermelho: #DC2626;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: #F4F6FA; color: #111827; font-family: 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; }
 
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(244,246,250,0.96); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.08); padding: 0 40px;
+    height: 64px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo .ym-mark { width: 28px; height: 28px; }
+  .nav-logo span { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: var(--branco); text-transform: uppercase; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: #6B7280; text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--branco); }
+  .nav-badge { background: rgba(0,85,229,0.08); border: 1px solid rgba(0,85,229,0.2); color: #0044BB; padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 80px 80px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(0,85,229,0.07) 0%, transparent 60%), radial-gradient(ellipse 40% 60% at 20% 70%, rgba(180,200,240,0.35) 0%, transparent 60%); }
+  .hero-grid-lines { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-content { position: relative; z-index: 2; max-width: 1200px; width: 100%; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; flex-wrap: wrap; }
+
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 100px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .badge-blue { background: rgba(0,85,229,0.08); border: 1px solid rgba(0,85,229,0.2); color: #1A4DB8; }
+  .badge-green { background: rgba(5,150,105,0.08); border: 1px solid rgba(5,150,105,0.22); color: #065F46; }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .hero-label { font-size: 11px; font-weight: 600; color: var(--azul-claro); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; }
+  .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(48px, 6vw, 80px); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; }
+  .hero h1 .highlight { background: linear-gradient(135deg, #003FBF 0%, #0055E5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub { font-size: 18px; font-weight: 400; color: #6B7280; max-width: 560px; margin-bottom: 48px; line-height: 1.7; }
+  .hero-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 48px; }
+  .hero-card { background: rgba(255,255,255,0.75); border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 20px; transition: border-color 0.3s; backdrop-filter: blur(4px); }
+  .hero-card:hover { border-color: rgba(0,85,229,0.3); }
+  .hero-card-label { font-size: 10px; font-weight: 600; color: #6B7280; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+  .hero-card-value { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: var(--branco); }
+  .hero-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: #0055E5; color: #FFFFFF; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-primary:hover { background: #003FBF; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,102,255,0.3); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; color: #6B7280; font-size: 14px; font-weight: 500; text-decoration: none; transition: color 0.2s; }
+  .btn-ghost:hover { color: #111827; }
+
+  section { padding: 100px 80px; max-width: 1400px; margin: 0 auto; }
+  .section-label { font-size: 11px; font-weight: 600; color: var(--azul-claro); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .section-label::before { content: ''; display: block; width: 24px; height: 2px; background: #0055E5; border-radius: 1px; }
+  .section-title { font-family: 'Montserrat', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 16px; }
+  .section-desc { font-size: 16px; color: #6B7280; max-width: 600px; line-height: 1.7; margin-bottom: 60px; }
+  .divider { height: 1px; background: rgba(0,0,0,0.08); margin: 0 80px; }
+
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .overview-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .overview-card.featured { background: linear-gradient(135deg, rgba(0,85,229,0.05) 0%, rgba(210,225,255,0.4) 100%); border-color: rgba(0,85,229,0.15); grid-column: span 2; }
+  .overview-card h3 { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7280; margin-bottom: 16px; }
+  .overview-card p { font-size: 16px; line-height: 1.75; color: #374151; }
+  .overview-card blockquote { font-family: 'Poppins', sans-serif; font-size: 21px; font-weight: 500; line-height: 1.5; color: #111827; border-left: 3px solid #0055E5; padding-left: 24px; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag { padding: 5px 12px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+  .tag-red { background: rgba(220,38,38,0.07); border: 1px solid rgba(220,38,38,0.2); color: #991B1B; }
+  .tag-yellow { background: rgba(180,83,9,0.07); border: 1px solid rgba(180,83,9,0.2); color: #7C2D12; }
+  .tag-green { background: rgba(5,150,105,0.07); border: 1px solid rgba(5,150,105,0.2); color: #065F46; }
+
+  .dashboard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 32px; }
+  .metric-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 28px; position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .metric-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .metric-card.red::before { background: var(--vermelho); }
+  .metric-card.yellow::before { background: var(--amarelo); }
+  .metric-card.green::before { background: var(--verde); }
+  .metric-title { font-size: 11px; font-weight: 600; color: #6B7280; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .metric-score { font-family: 'Montserrat', sans-serif; font-size: 40px; font-weight: 800; line-height: 1; margin-bottom: 8px; }
+  .metric-score.red { color: var(--vermelho); }
+  .metric-score.yellow { color: var(--amarelo); }
+  .metric-score.green { color: var(--verde); }
+  .metric-max { font-size: 14px; font-weight: 400; color: #6B7280; }
+  .metric-desc { font-size: 13px; color: #6B7280; margin-top: 8px; line-height: 1.5; }
+  .progress-bar { margin-top: 16px; height: 4px; background: rgba(0,0,0,0.08); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 2px; }
+
+  .semaforo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .semaforo-item { display: flex; align-items: flex-start; gap: 16px; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 20px; box-shadow: 0 1px 6px rgba(0,0,0,0.04); }
+  .semaforo-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+  .dot-red { background: #DC2626; box-shadow: 0 0 8px rgba(220,38,38,0.4); }
+  .dot-yellow { background: #D97706; box-shadow: 0 0 8px rgba(217,119,6,0.4); }
+  .dot-green { background: #059669; box-shadow: 0 0 8px rgba(5,150,105,0.4); }
+  .semaforo-text h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .semaforo-text p { font-size: 13px; color: #6B7280; line-height: 1.5; }
+
+  .analise-block { margin-bottom: 48px; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .analise-header { padding: 24px 32px; border-bottom: 1px solid rgba(0,0,0,0.07); display: flex; align-items: center; gap: 16px; }
+  .analise-icon { width: 40px; height: 40px; background: rgba(0,85,229,0.08); border: 1px solid rgba(0,85,229,0.18); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .analise-header h3 { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; }
+  .analise-header .status-badge { margin-left: auto; }
+  .analise-body { padding: 32px; }
+  .insight-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .insight-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.6; color: #374151; }
+  .insight-list li::before { content: '→'; color: #0055E5; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .insight-list.critical li::before { content: '✗'; color: #DC2626; }
+  .insight-list.positive li::before { content: '✓'; color: #059669; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .col-label { font-size: 13px; font-weight: 600; color: #6B7280; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .insight-box { margin-top: 24px; background: rgba(0,85,229,0.04); border: 1px solid rgba(0,85,229,0.15); border-radius: 10px; padding: 20px 24px; }
+  .insight-box-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0055E5; margin-bottom: 6px; }
+  .insight-box-text { font-size: 14px; color: #374151; line-height: 1.65; }
+
+  .oport-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .oport-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 28px; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .oport-card:hover { border-color: rgba(0,85,229,0.3); transform: translateY(-2px); }
+  .oport-num { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: #0055E5; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .oport-card h3 { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+  .oport-card p { font-size: 13px; color: #4B5563; line-height: 1.65; }
+  .oport-impact { margin-top: 16px; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .roadmap-timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
+  .roadmap-timeline::before { content: ''; position: absolute; top: 36px; left: 16.67%; right: 16.67%; height: 1px; background: linear-gradient(90deg, #0055E5 0%, rgba(0,85,229,0.15) 100%); }
+  .roadmap-phase { padding: 0 24px 0 0; }
+  .roadmap-phase:last-child { padding-right: 0; }
+  .phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .phase-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .phase-num { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0055E5; }
+  .phase-period { font-size: 11px; font-weight: 500; color: #6B7280; margin-left: auto; }
+  .roadmap-phase h3 { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
+  .roadmap-items { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .roadmap-items li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #374151; line-height: 1.5; padding: 10px 12px; background: #F9FAFB; border: 1px solid rgba(0,0,0,0.07); border-radius: 8px; }
+  .roadmap-items li .item-icon { font-size: 14px; flex-shrink: 0; }
+  .roadmap-phase.active .roadmap-items li { border-color: rgba(0,85,229,0.15); background: rgba(0,85,229,0.04); }
+
+  .proximos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+  .passo-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 32px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .passo-num { width: 40px; height: 40px; border-radius: 10px; background: rgba(0,85,229,0.08); border: 1px solid rgba(0,85,229,0.2); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 800; color: var(--azul-claro); }
+  .passo-card h3 { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; }
+  .passo-card p { font-size: 13px; color: #4B5563; line-height: 1.65; flex: 1; }
+  .passo-deadline { font-size: 11px; font-weight: 600; color: #0055E5; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .cta-section { background: linear-gradient(135deg, rgba(0,85,229,0.06) 0%, rgba(200,215,255,0.35) 100%); border: 1px solid rgba(0,85,229,0.15); border-radius: 24px; padding: 64px; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,85,229,0.08) 0%, transparent 70%); pointer-events: none; }
+  .cta-section h2 { font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 16px; position: relative; }
+  .cta-section p { font-size: 16px; color: #4B5563; max-width: 480px; margin: 0 auto 36px; line-height: 1.7; position: relative; }
+  .cta-buttons { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; position: relative; }
+  .btn-whatsapp { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #111827; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-whatsapp:hover { background: #1EBC57; transform: translateY(-1px); }
+  .next-service { margin-top: 48px; padding: 24px 32px; background: rgba(255,255,255,0.7); border: 1px solid rgba(0,0,0,0.1); border-radius: 12px; display: flex; align-items: center; gap: 20px; }
+  .next-service-info { flex: 1; text-align: left; }
+  .next-service-label { font-size: 10px; font-weight: 600; color: #6B7280; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+  .next-service h4 { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .next-service p { font-size: 13px; color: #6B7280; margin: 0; }
+  .next-service-price { text-align: right; }
+  .next-service-price .price { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; color: var(--azul-claro); }
+  .next-service-price .price-label { font-size: 11px; color: #6B7280; }
+
+  footer { background: #EAEEF5; border-top: 1px solid rgba(0,0,0,0.09); padding: 60px 80px 40px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .footer-logo .ym-text { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; }
+  .footer-brand p { font-size: 14px; color: #6B7280; line-height: 1.7; max-width: 280px; }
+  .footer-col h4 { font-size: 11px; font-weight: 700; color: #6B7280; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .footer-col a { display: block; font-size: 14px; color: #4B5563; text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+  .footer-col a:hover { color: #111827; }
+  .footer-bottom { border-top: 1px solid rgba(0,0,0,0.09); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-bottom p { font-size: 12px; color: #9CA3AF; }
+  .footer-sig { font-size: 12px; color: #9CA3AF; font-style: italic; }
+
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; } .nav-links { display: none; }
+    section, .hero { padding: 80px 24px; } .divider { margin: 0 24px; } footer { padding: 40px 24px; }
+    .hero-cards { grid-template-columns: repeat(2, 1fr); } .dashboard-grid { grid-template-columns: 1fr 1fr; }
+    .overview-grid { grid-template-columns: 1fr; } .overview-card.featured { grid-column: span 1; }
+    .semaforo-grid { grid-template-columns: 1fr; } .roadmap-timeline { grid-template-columns: 1fr; }
+    .roadmap-timeline::before { display: none; } .oport-grid { grid-template-columns: 1fr; }
+    .proximos-grid { grid-template-columns: 1fr; } .two-col { grid-template-columns: 1fr; }
+    .cta-section { padding: 40px 24px; } .next-service { flex-direction: column; }
+    .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+  @media (max-width: 600px) { .hero-cards { grid-template-columns: 1fr 1fr; } .dashboard-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <svg class="ym-mark" viewBox="0 0 100 110" fill="none">
+      <path d="M10 10 L50 60 L90 10" stroke="#3D5BFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="50" cy="90" r="12" fill="#3D5BFF"/>
+    </svg>
+    <span>YM Marketing & Negócios</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#visao">Visão Geral</a></li>
+    <li><a href="#diagnostico">Diagnóstico</a></li>
+    <li><a href="#analise">Análise</a></li>
+    <li><a href="#oportunidades">Oportunidades</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#proximos">Próximos Passos</a></li>
+  </ul>
+  <span class="nav-badge">Raio-X Estratégico</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-meta">
+      <span class="badge badge-green"><span class="badge-dot"></span>Análise Concluída</span>
+      <span class="badge badge-blue">Junho 2026 · Confidencial</span>
+    </div>
+    <div class="hero-label">Raio-X Estratégico — Presença Digital</div>
+    <h1>Geisiane Melo<br><span class="highlight">Easy Chic</span></h1>
+    <p class="hero-sub">Uma leitura estratégica da sua presença digital atual. O que está travando sua captação, onde está o potencial real e qual o próximo movimento certo.</p>
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hero-card-label">Profissional</div>
+        <div class="hero-card-value">Geisiane Melo</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Segmento</div>
+        <div class="hero-card-value">Moda Consultiva · Curadoria</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Canal Principal</div>
+        <div class="hero-card-value">@easy_chicmodaconsultiva</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Status Digital</div>
+        <div class="hero-card-value" style="color:#D97706;">⚠ Potencial Oculto</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#visao" class="btn-primary">Ver Análise Completa <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#proximos" class="btn-ghost">Pular para Próximos Passos →</a>
+    </div>
+  </div>
+</div>
+
+<!-- VISÃO GERAL -->
+<section id="visao">
+  <div class="section-label">01 — Visão Geral Executiva</div>
+  <h2 class="section-title">O que este Raio-X revelou</h2>
+  <p class="section-desc">Uma leitura direta sobre o momento atual da Easy Chic e o potencial real que ainda não foi comunicado ao mercado.</p>
+
+  <div class="overview-grid">
+    <div class="overview-card featured">
+      <h3>Síntese Estratégica</h3>
+      <blockquote>"Geisiane tem algo que poucas consultoras de moda têm: um bom gosto reconhecido pelas pessoas, um feed visualmente consistente e um serviço completo que vai da curadoria à entrega. O problema é que ninguém sabe o que ela vende, quanto cobra, ou como contratar. O negócio existe — mas ele ainda não tem uma vitrine."</blockquote>
+      <div class="tag-list">
+        <span class="tag tag-green">✓ Feed com identidade visual coerente e atraente</span>
+        <span class="tag tag-green">✓ 409 seguidores com proporção saudável (137 seguindo)</span>
+        <span class="tag tag-green">✓ Processo de atendimento completo já existe</span>
+        <span class="tag tag-green">✓ Diferencial reconhecido: "Que tenho bom gosto"</span>
+        <span class="tag tag-yellow">⚠ Projeto é hobby — falta de tempo é o principal gargalo</span>
+        <span class="tag tag-yellow">⚠ Bio incompleta — bio cortada, proposta não fica clara</span>
+        <span class="tag tag-yellow">⚠ Linktree com apenas 2 links — sem catálogo, sem preços</span>
+        <span class="tag tag-red">✗ Sem catálogo de serviços com preços publicado</span>
+        <span class="tag tag-red">✗ Pessoas não entendem claramente o que ela faz</span>
+        <span class="tag tag-red">✗ Sem avaliações ou depoimentos visíveis</span>
+        <span class="tag tag-red">✗ Frequência de publicação raramente</span>
+      </div>
+    </div>
+    <div class="overview-card">
+      <h3>O Problema Central</h3>
+      <p>Geisiane tem um serviço que funciona — ela faz a curadoria, seleciona as peças, organiza, compra online e ainda combina as entregas, tudo sozinha. O problema não é competência: é que esse serviço completo nunca foi comunicado com clareza. A bio termina no meio de uma frase. Não há catálogo. Não há preço visível. O cliente chega pelo Instagram, vê looks lindos e não sabe se é uma loja, uma consultora de imagem ou uma influencer. Essa confusão custa vendas todos os dias.</p>
+    </div>
+    <div class="overview-card">
+      <h3>O Potencial Identificado</h3>
+      <p>A Easy Chic está num nicho com demanda crescente e pouquíssima concorrência qualificada: moda consultiva que une curadoria personalizada com compra e entrega. Esse serviço end-to-end é raro. Com um catálogo estruturado, bio clara, destaques organizados por serviço e uma frequência mínima de conteúdo, Geisiane pode transformar o projeto hobby em negócio real — mesmo com tempo limitado, porque o produto já existe e é bom.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DIAGNÓSTICO -->
+<section id="diagnostico">
+  <div class="section-label">02 — Diagnóstico Visual</div>
+  <h2 class="section-title">Painel de Saúde Digital</h2>
+  <p class="section-desc">Indicadores-chave avaliados com base na análise do Instagram, Linktree e formulário estratégico.</p>
+
+  <div class="dashboard-grid">
+    <div class="metric-card red">
+      <div class="metric-title">Clareza da Oferta</div>
+      <div class="metric-score red">2.0<span class="metric-max">/10</span></div>
+      <div class="metric-desc">Sem catálogo, sem preços, bio incompleta. Visitante não consegue entender o que comprar, como contratar ou quanto custa em nenhum dos canais.</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:20%; background:#DC2626;"></div></div>
+    </div>
+    <div class="metric-card red">
+      <div class="metric-title">Frequência de Conteúdo</div>
+      <div class="metric-score red">2.5<span class="metric-max">/10</span></div>
+      <div class="metric-desc">Publicação declarada como "raramente". 40 posts em conta ativa não cria histórico suficiente para o algoritmo distribuir organicamente.</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:25%; background:#DC2626;"></div></div>
+    </div>
+    <div class="metric-card red">
+      <div class="metric-title">Estrutura de Captação</div>
+      <div class="metric-score red">2.5<span class="metric-max">/10</span></div>
+      <div class="metric-desc">Linktree com 2 links genéricos — WhatsApp e Instagram. Sem página de serviços, sem formulário, sem processo claro de entrada para novos clientes.</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:25%; background:#DC2626;"></div></div>
+    </div>
+    <div class="metric-card yellow">
+      <div class="metric-title">Identidade Visual</div>
+      <div class="metric-score yellow">6.5<span class="metric-max">/10</span></div>
+      <div class="metric-desc">Feed visualmente coerente com looks de qualidade, paleta neutra e presença pessoal forte. Identidade existe — falta aplicação consistente e volume.</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:65%; background:#D97706;"></div></div>
+    </div>
+    <div class="metric-card yellow">
+      <div class="metric-title">Prova Social</div>
+      <div class="metric-score yellow">4.0<span class="metric-max">/10</span></div>
+      <div class="metric-desc">Destaque "Clientes" existe mas sem depoimentos formais, sem avaliações e sem before/after de curadoria documentado. A prova social está implícita, não explícita.</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:40%; background:#D97706;"></div></div>
+    </div>
+    <div class="metric-card green">
+      <div class="metric-title">Autoridade & Percepção</div>
+      <div class="metric-score green">7.0<span class="metric-max">/10</span></div>
+      <div class="metric-desc">Diferencial reconhecido espontaneamente — "Que tenho bom gosto". Proporção seguidores/seguindo saudável. Feed passa credibilidade visual real.</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:70%; background:#059669;"></div></div>
+    </div>
+  </div>
+
+  <div class="semaforo-grid">
+    <div class="semaforo-item">
+      <div class="semaforo-dot dot-red"></div>
+      <div class="semaforo-text">
+        <h4>Sem Catálogo de Serviços — Crítico</h4>
+        <p>O principal produto da Easy Chic — curadoria personalizada — não tem preço, não tem descrição e não tem processo comunicado. O cliente interessado não sabe o que pedir nem quanto vai pagar. Isso é o maior obstáculo de conversão existente.</p>
+      </div>
+    </div>
+    <div class="semaforo-item">
+      <div class="semaforo-dot dot-red"></div>
+      <div class="semaforo-text">
+        <h4>Pessoas Não Entendem o Que Ela Faz — Crítico</h4>
+        <p>Geisiane declarou no formulário que as pessoas não entendem claramente o que ela faz. Bio cortada, sem distinção clara entre "loja online" e "curadoria personalizada". São serviços diferentes que precisam de comunicação diferente.</p>
+      </div>
+    </div>
+    <div class="semaforo-item">
+      <div class="semaforo-dot dot-yellow"></div>
+      <div class="semaforo-text">
+        <h4>Bio Incompleta — Atenção</h4>
+        <p>A bio do @easy_chicmodaconsultiva termina no meio de uma frase: "Sua loja on-line com a opção de uma curadoria..." — o visitante precisa clicar em "mais" para entender a proposta. A bio precisa comunicar o essencial nos primeiros 3 segundos, sem precisar expandir.</p>
+      </div>
+    </div>
+    <div class="semaforo-item">
+      <div class="semaforo-dot dot-yellow"></div>
+      <div class="semaforo-text">
+        <h4>Destaques sem Hierarquia Estratégica — Atenção</h4>
+        <p>4 destaques (Disponível, Acervo pessoal, Clientes, O projeto) — estrutura existe mas sem ordem de prioridade para quem chega pela primeira vez. "O projeto" e "Disponível" deveriam aparecer antes de "Acervo pessoal".</p>
+      </div>
+    </div>
+    <div class="semaforo-item">
+      <div class="semaforo-dot dot-green"></div>
+      <div class="semaforo-text">
+        <h4>Feed com Qualidade Visual Real — Positivo</h4>
+        <p>Os posts mostram looks com styling cuidadoso, presença pessoal forte e paleta visual coerente. O nível estético está acima da média do segmento — é o maior ativo da conta e precisa ser o argumento central de venda.</p>
+      </div>
+    </div>
+    <div class="semaforo-item">
+      <div class="semaforo-dot dot-green"></div>
+      <div class="semaforo-text">
+        <h4>Proporção Seguidores Saudável — Positivo</h4>
+        <p>409 seguidores para 137 seguindo é uma proporção positiva — indica crescimento orgânico real e não artificialmente inflado. A base existe. O problema não é tamanho, é conversão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ANÁLISE PROFUNDA -->
+<section id="analise">
+  <div class="section-label">03 — Análise Profunda</div>
+  <h2 class="section-title">O que está travando e o que está funcionando</h2>
+  <p class="section-desc">Leitura detalhada de cada canal e frente estratégica da Easy Chic.</p>
+
+  <!-- INSTAGRAM -->
+  <div class="analise-block fade-up">
+    <div class="analise-header">
+      <div class="analise-icon">📱</div>
+      <div>
+        <h3>Instagram — @easy_chicmodaconsultiva</h3>
+        <div style="font-size:12px;color:#6B7280;margin-top:2px;">40 posts · 409 seguidores · 137 seguindo</div>
+      </div>
+      <span class="badge badge-blue status-badge">Atenção</span>
+    </div>
+    <div class="analise-body">
+      <div class="two-col">
+        <div>
+          <p class="col-label">Problemas Identificados</p>
+          <ul class="insight-list critical">
+            <li>Bio termina cortada — proposta central não é legível sem interação. Visitante sai sem entender o negócio</li>
+            <li>Sem distinção visual entre "loja" (venda de peças) e "curadoria" (serviço personalizado) — dois produtos diferentes misturados sem hierarquia</li>
+            <li>Frequência "raramente" impede que o algoritmo distribua o conteúdo para novas pessoas além dos seguidores atuais</li>
+            <li>Destaques sem CTA direto — "O projeto" não conduz o visitante para o próximo passo (contratar, consultar preço, entrar em contato)</li>
+            <li>Sem posts fixados estratégicos — não há apresentação do serviço, processo ou depoimento de cliente na primeira dobra do perfil</li>
+            <li>Conteúdo de looks é bom mas não contextualiza o serviço — o seguidor vê o look mas não entende que pode contratar aquele olhar para si</li>
+          </ul>
+        </div>
+        <div>
+          <p class="col-label">O Que Pode Funcionar</p>
+          <ul class="insight-list positive">
+            <li>Identidade visual consistente e estética elevada — diferencial imediato no feed comparado a concorrentes</li>
+            <li>Presença pessoal nos posts (Geisiane nos looks) humaniza e cria conexão — funciona muito bem para moda consultiva</li>
+            <li>Destaque "Clientes" já existe — base para prova social que precisa ser expandida com depoimentos e antes/depois</li>
+            <li>Destaque "O projeto" — existe uma apresentação da proposta, precisando apenas de CTA mais claro ao final</li>
+            <li>409 seguidores com proporção saudável — audiência pequena mas real, sem inflação artificial</li>
+            <li>Conteúdo misto de looks do dia a dia e looks curados da Easy Chic — estratégia correta de topo de funil</li>
+          </ul>
+        </div>
+      </div>
+      <div class="insight-box">
+        <div class="insight-box-label">Insight Estratégico</div>
+        <div class="insight-box-text">O Instagram da Easy Chic tem visual correto mas não tem funil. O visitante vê looks bonitos, admira o estilo e sai sem saber que pode contratar esse olhar para si mesmo. <strong>Cada post de look deveria terminar com uma frase que ativa o desejo de contratar</strong> — algo como "Esse look foi curado especialmente. Quer um igual para você? Link na bio." O conteúdo está quase certo — só falta o convite.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSICIONAMENTO -->
+  <div class="analise-block fade-up">
+    <div class="analise-header">
+      <div class="analise-icon">🎯</div>
+      <div>
+        <h3>Posicionamento & Proposta de Valor</h3>
+        <div style="font-size:12px;color:#6B7280;margin-top:2px;">Como a Easy Chic aparece — e como deveria aparecer</div>
+      </div>
+      <span class="badge badge-blue status-badge">Crítico</span>
+    </div>
+    <div class="analise-body">
+      <div class="two-col">
+        <div>
+          <p class="col-label">Diagnóstico Atual</p>
+          <ul class="insight-list critical">
+            <li>O nome "Easy Chic moda consultiva" e o username @easy_chicmodaconsultiva comunicam fashion mas não comunicam o serviço de curadoria personalizada</li>
+            <li>A frase "Sua loja on-line com a opção de uma curadoria" mistura dois posicionamentos distintos — loja e consultoria têm públicos e expectativas diferentes</li>
+            <li>Sem resposta clara para: "por que contratar a Easy Chic e não qualquer personal stylist de BH?"</li>
+            <li>O diferencial mais forte — serviço end-to-end (curadoria + compra + entrega) — não está comunicado em nenhum canal de forma explícita</li>
+            <li>Sem precificação visível: pessoas interessadas não sabem nem o ponto de partida do investimento</li>
+          </ul>
+        </div>
+        <div>
+          <p class="col-label">O Posicionamento Possível</p>
+          <ul class="insight-list positive">
+            <li>Posicionamento potente: "Curadoria de moda do zero à entrega — você escolhe o estilo, eu cuido do resto"</li>
+            <li>O serviço end-to-end é genuinamente raro — a maioria das consultoras para na sugestão; Geisiane compra e entrega</li>
+            <li>Público-alvo claro: mulheres que querem se vestir bem mas não têm tempo ou segurança para montar looks sozinhas</li>
+            <li>A opção de parceria com marcas para curadoria é diferencial adicional — possibilita conteúdo patrocinado e comissionamento</li>
+            <li>Geisiane como persona (referência de estilo pessoal) já funciona no feed — amplificar isso como prova do serviço</li>
+          </ul>
+        </div>
+      </div>
+      <div class="insight-box">
+        <div class="insight-box-label">Insight Estratégico</div>
+        <div class="insight-box-text">O maior diferencial da Easy Chic está escondido no formulário: <strong>"Faço a compra on-line e combino as entregas"</strong>. Isso é o que nenhuma consultora de moda de BH faz. É o serviço completo — do gosto ao guarda-roupa, sem que o cliente precise fazer nada além de escolher o estilo. Esse diferencial precisa ser o título de toda comunicação, não uma informação enterrada no processo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATÁLOGO & PROCESSO -->
+  <div class="analise-block fade-up">
+    <div class="analise-header">
+      <div class="analise-icon">📦</div>
+      <div>
+        <h3>Catálogo, Serviços & Estrutura Comercial</h3>
+        <div style="font-size:12px;color:#6B7280;margin-top:2px;">O que existe e o que precisa ser criado para converter interesse em venda</div>
+      </div>
+      <span class="badge badge-blue status-badge">Crítico</span>
+    </div>
+    <div class="analise-body">
+      <div class="two-col">
+        <div>
+          <p class="col-label">Gargalos Identificados</p>
+          <ul class="insight-list critical">
+            <li>Sem catálogo de serviços — não há documento, link ou página que liste o que a Easy Chic oferece com preço e descrição</li>
+            <li>Sem tabela de preços — sem saber o investimento, cliente interessado não avança para o contato</li>
+            <li>Processo de venda depende de conversa individual por WhatsApp para cada cliente — sem escala, alto esforço operacional</li>
+            <li>Linktree com apenas "Compre aqui" e "Instagram" — sem menu de serviços, sem apresentação do processo, sem prova social</li>
+            <li>Objetivo declarado no formulário ("montar catálogo com as opções de serviços, com preços") ainda não foi executado</li>
+          </ul>
+        </div>
+        <div>
+          <p class="col-label">O Que Pode Ser Estruturado</p>
+          <ul class="insight-list positive">
+            <li>Serviço 1: Curadoria completa — análise de perfil + seleção de peças + compra + entrega</li>
+            <li>Serviço 2: Consultoria de look — para evento ou ocasião específica, entrega de proposta visual</li>
+            <li>Serviço 3: Reserva de peças — cliente vê a peça no feed e reserva via WhatsApp</li>
+            <li>Parceria com marcas como serviço adicional — comissão por indicação com curadoria garantida</li>
+            <li>Um PDF de apresentação simples (2 páginas) com serviços e preços já resolve 80% da fricção de conversão</li>
+          </ul>
+        </div>
+      </div>
+      <div class="insight-box">
+        <div class="insight-box-label">Insight Estratégico</div>
+        <div class="insight-box-text">A falta de catálogo é o gargalo número 1. <strong>Sem saber o preço, o cliente não decide.</strong> Criar um catálogo simples — mesmo que seja um PDF de 2 páginas com 3 serviços e preços — resolve imediatamente a objeção mais comum. O catálogo vai para o Linktree, para os destaques do Instagram e é enviado automaticamente no WhatsApp antes de qualquer conversa. Isso reduz o esforço de cada venda e aumenta a taxa de fechamento.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUNIL & CONTEÚDO -->
+  <div class="analise-block fade-up">
+    <div class="analise-header">
+      <div class="analise-icon">📊</div>
+      <div>
+        <h3>Funil de Captação & Conteúdo</h3>
+        <div style="font-size:12px;color:#6B7280;margin-top:2px;">Do primeiro contato até o fechamento</div>
+      </div>
+      <span class="badge badge-blue status-badge">Crítico</span>
+    </div>
+    <div class="analise-body">
+      <div class="two-col">
+        <div>
+          <p class="col-label">Gargalos Identificados</p>
+          <ul class="insight-list critical">
+            <li>Funil atual: Instagram → WhatsApp → conversa individual → proposta manual → venda. Sem automação, sem catálogo, sem escala</li>
+            <li>Sem conteúdo de topo de funil educativo — nenhum post que explique o que é curadoria de moda e por que contratar</li>
+            <li>Frequência raramente impede que o algoritmo entregue o conteúdo fora da base de seguidores atual</li>
+            <li>Falta de tempo declarada como barreira — sem sistema simples, qualquer aumento de frequência parece impossível</li>
+            <li>Sem processo automatizado no WhatsApp — cada novo contato começa do zero, sem mensagem de boas-vindas estruturada</li>
+          </ul>
+        </div>
+        <div>
+          <p class="col-label">O Funil Possível</p>
+          <ul class="insight-list positive">
+            <li>Topo: posts de looks (já existem) + 1 post/semana educativo sobre estilo e curadoria — atrai quem tem o problema</li>
+            <li>Linktree reestruturado com catálogo de serviços + formulário de interesse — qualifica o lead antes do WhatsApp</li>
+            <li>WhatsApp com mensagem automática enviando o catálogo PDF — elimina a conversa de qualificação manual</li>
+            <li>Destaques como funil visual: "O que é Easy Chic" → "Serviços e preços" → "Clientes" → "Disponível" → "Como contratar"</li>
+            <li>Um carrossel mensal com cases de curadoria antes/depois — prova social sistemática e conteúdo de conversão</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEMPO & OPERAÇÃO -->
+  <div class="analise-block fade-up">
+    <div class="analise-header">
+      <div class="analise-icon">⏱️</div>
+      <div>
+        <h3>Tempo, Operação & Escala</h3>
+        <div style="font-size:12px;color:#6B7280;margin-top:2px;">A Easy Chic como projeto de tempo limitado — o que é possível fazer bem</div>
+      </div>
+      <span class="badge badge-blue status-badge">Estratégico</span>
+    </div>
+    <div class="analise-body">
+      <div class="two-col">
+        <div>
+          <p class="col-label">A Realidade do Projeto</p>
+          <ul class="insight-list">
+            <li>Geisiane declarou que não tem muito tempo para o projeto — hoje ele é mais um hobby que um negócio estruturado</li>
+            <li>Opera sozinha — curadoria, compra e entrega são feitas por uma única pessoa, o que limita o volume de clientes simultâneos</li>
+            <li>A falta de catálogo faz com que cada venda demande muito mais esforço do que o necessário — operação ineficiente por ausência de estrutura, não por falta de capacidade</li>
+            <li>Sem processo definido, o crescimento orgânico (quando acontece) gera sobrecarga, não receita</li>
+          </ul>
+        </div>
+        <div>
+          <p class="col-label">A Abordagem Certa para Tempo Limitado</p>
+          <ul class="insight-list positive">
+            <li>Priorizar estrutura antes de volume — um catálogo claro reduz o tempo de cada venda em 60%</li>
+            <li>2 posts por semana são suficientes para manter o algoritmo ativo — não precisa ser diário</li>
+            <li>Templates de resposta no WhatsApp eliminam a necessidade de digitar o mesmo texto a cada novo contato</li>
+            <li>Um destaque de "Como funciona" com o processo de 4 passos elimina perguntas repetitivas e filtra clientes sem perfil</li>
+            <li>Com menos esforço por venda, mais vendas com o mesmo tempo disponível — esse é o objetivo real da estruturação</li>
+          </ul>
+        </div>
+      </div>
+      <div class="insight-box">
+        <div class="insight-box-label">Insight Estratégico</div>
+        <div class="insight-box-text">O objetivo desta fase não é transformar a Easy Chic num negócio de tempo integral — é <strong>tornar cada hora investida mais eficiente</strong>. Com catálogo, templates e destaques organizados, o esforço de cada venda cai pela metade. Geisiane pode manter o projeto como hobby e ainda assim crescer, porque o sistema trabalha por ela quando ela não está disponível.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OPORTUNIDADES -->
+<section id="oportunidades">
+  <div class="section-label">04 — Oportunidades Estratégicas</div>
+  <h2 class="section-title">Onde está o crescimento real</h2>
+  <p class="section-desc">Oportunidades identificadas com base nos dados, nas respostas do formulário e na análise da presença digital.</p>
+
+  <div class="oport-grid">
+    <div class="oport-card">
+      <div class="oport-num">Oportunidade 01 · Alta Prioridade</div>
+      <h3>Criar Catálogo de Serviços com Preços</h3>
+      <p>Um documento simples — PDF de 2 páginas ou link de página — que lista os 3 serviços da Easy Chic com descrição, o que está incluído e preço. Esse único ativo resolve o principal gargalo de conversão: o cliente interessado hoje não tem como avançar porque não sabe o que pedir nem quanto custa. Com catálogo, a venda começa antes de qualquer conversa.</p>
+      <div class="oport-impact" style="color:#059669;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Impacto Máximo · Execução Imediata
+      </div>
+    </div>
+    <div class="oport-card">
+      <div class="oport-num">Oportunidade 02 · Alta Prioridade</div>
+      <h3>Reescrever a Bio com o Diferencial End-to-End</h3>
+      <p>A bio atual não comunica o maior diferencial da Easy Chic — que Geisiane faz curadoria, compra e entrega, sem o cliente precisar se preocupar com nada além do estilo. Reescrever a bio em 3 linhas diretas: o que ela faz + para quem + como contratar. Impacto imediato na conversão de qualquer visitante novo.</p>
+      <div class="oport-impact" style="color:#059669;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Impacto Alto · 15 Minutos
+      </div>
+    </div>
+    <div class="oport-card">
+      <div class="oport-num">Oportunidade 03 · Alta Prioridade</div>
+      <h3>Publicar Casos de Curadoria como Antes/Depois</h3>
+      <p>Cada cliente atendido é um case poderoso. Com autorização, mostrar o perfil do cliente, o desafio (sem tempo, sem estilo definido, evento especial) e os looks curados como solução cria prova social visual de alto impacto. Um carrossel de antes/depois de curadoria vale mais do que 20 fotos de looks individuais para quem está decidindo contratar.</p>
+      <div class="oport-impact" style="color:#059669;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Prova Social Real · Alta Conversão
+      </div>
+    </div>
+    <div class="oport-card">
+      <div class="oport-num">Oportunidade 04 · Alta Prioridade</div>
+      <h3>Reestruturar o Linktree como Mini-Site</h3>
+      <p>Substituir os 2 links genéricos por uma estrutura de 4 a 5 links: Catálogo de Serviços, Como Funciona, Clientes e Resultados, Reservar Peças e WhatsApp. Isso transforma o Linktree no hub de conversão da Easy Chic — qualquer visitante do Instagram encontra tudo que precisa para decidir sem precisar perguntar.</p>
+      <div class="oport-impact" style="color:#059669;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Funil Automático · Baixo Esforço
+      </div>
+    </div>
+    <div class="oport-card">
+      <div class="oport-num">Oportunidade 05 · Média Prioridade</div>
+      <h3>Parcerias com Marcas para Curadoria Patrocinada</h3>
+      <p>Geisiane declarou o objetivo de "fazer parcerias com marcas para indicar na curadoria". Com catálogo e presença estruturada, essa conversa com marcas se torna possível. A proposta é clara: Easy Chic cuida da curadoria, a marca fornece as peças ou comissiona por venda. Um diferencial de produto que poucas consultoras do nicho oferecem.</p>
+      <div class="oport-impact" style="color:#D97706;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Diferencial de Produto · Médio Prazo
+      </div>
+    </div>
+    <div class="oport-card">
+      <div class="oport-num">Oportunidade 06 · Médio Prazo</div>
+      <h3>Conteúdo Educativo sobre Curadoria de Moda</h3>
+      <p>Posts e Reels explicando "o que é moda consultiva", "como funciona uma curadoria personalizada" e "por que contratar uma consultora de moda" educam o público que ainda não sabe que esse serviço existe. Conteúdo educativo atrai exatamente o público que tem o problema que a Easy Chic resolve — e ainda posiciona Geisiane como autoridade no nicho.</p>
+      <div class="oport-impact" style="color:#D97706;">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Autoridade · Alcance Orgânico
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-label">05 — Roadmap Estratégico</div>
+  <h2 class="section-title">O caminho em 3 fases</h2>
+  <p class="section-desc">Progressão pensada para projeto de tempo limitado — estrutura antes de volume, eficiência antes de escala.</p>
+
+  <div class="roadmap-timeline">
+    <div class="roadmap-phase active">
+      <div class="phase-header">
+        <div class="phase-dot" style="background:#0055E5;box-shadow:0 0 8px rgba(0,102,255,0.5);"></div>
+        <span class="phase-num">Fase 01</span>
+        <span class="phase-period">Dias 1–30</span>
+      </div>
+      <h3>Estrutura & Clareza</h3>
+      <ul class="roadmap-items">
+        <li><span class="item-icon">📝</span> Reescrever bio: diferencial + serviço + CTA em 3 linhas</li>
+        <li><span class="item-icon">📦</span> Criar catálogo PDF com 3 serviços e preços</li>
+        <li><span class="item-icon">🔗</span> Reestruturar Linktree com 4 links estratégicos</li>
+        <li><span class="item-icon">✨</span> Reorganizar destaques: serviços → processo → clientes → disponível</li>
+        <li><span class="item-icon">💬</span> Mensagem automática no WhatsApp enviando o catálogo</li>
+        <li><span class="item-icon">📸</span> Publicar 1 case de curadoria antes/depois (com autorização)</li>
+      </ul>
+    </div>
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <div class="phase-dot" style="background:rgba(0,102,255,0.3);"></div>
+        <span class="phase-num">Fase 02</span>
+        <span class="phase-period">Dias 31–90</span>
+      </div>
+      <h3>Conteúdo & Prova Social</h3>
+      <ul class="roadmap-items">
+        <li><span class="item-icon">🎬</span> Série de 4 Reels educativos: "o que é curadoria de moda"</li>
+        <li><span class="item-icon">🏆</span> Publicar 3 cases de curadoria com before/after</li>
+        <li><span class="item-icon">📅</span> Calendário de 2 posts/semana — sustentável com tempo limitado</li>
+        <li><span class="item-icon">⭐</span> Coletar 5 depoimentos de clientes para destacar no perfil</li>
+        <li><span class="item-icon">🤝</span> Primeiro contato com marca para parceria de curadoria</li>
+        <li><span class="item-icon">📈</span> Meta: 700+ seguidores, primeiras vendas diretas pelo perfil</li>
+      </ul>
+    </div>
+    <div class="roadmap-phase">
+      <div class="phase-header">
+        <div class="phase-dot" style="background:rgba(0,102,255,0.2);"></div>
+        <span class="phase-num">Fase 03</span>
+        <span class="phase-period">Mês 4–6</span>
+      </div>
+      <h3>Crescimento & Parcerias</h3>
+      <ul class="roadmap-items">
+        <li><span class="item-icon">🌐</span> Página própria (site simples) com portfólio e formulário de contato</li>
+        <li><span class="item-icon">🤝</span> 2 parcerias ativas com marcas para curadoria comissionada</li>
+        <li><span class="item-icon">📢</span> Tráfego pago para o catálogo de serviços</li>
+        <li><span class="item-icon">📈</span> Meta: 1.200+ seguidores, agenda de curadoria com espera</li>
+        <li><span class="item-icon">💰</span> Receita recorrente mensal estabilizada pela curadoria</li>
+        <li><span class="item-icon">🎯</span> Posicionamento como referência de moda consultiva em BH</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRÓXIMOS PASSOS -->
+<section id="proximos">
+  <div class="section-label">06 — Próximos Passos</div>
+  <h2 class="section-title">O que fazer agora</h2>
+  <p class="section-desc">Quatro ações práticas e executáveis — pensadas para quem tem tempo limitado e quer o maior impacto com o menor esforço.</p>
+
+  <div class="proximos-grid">
+    <div class="passo-card">
+      <div class="passo-num">1</div>
+      <h3>Reescrever a Bio em 3 Linhas Diretas</h3>
+      <p>Substituir a bio atual por uma estrutura que comunica o essencial sem precisar clicar em "mais". Sugestão de direção: "Curadoria de moda personalizada — do look ao seu guarda-roupa ✨ | Eu seleciono, compro e entrego para você | Serviços e preços no link abaixo →". Impacto imediato em qualquer visitante que chegar de agora em diante.</p>
+      <span class="passo-deadline">→ 15 minutos · Fazer hoje</span>
+    </div>
+    <div class="passo-card">
+      <div class="passo-num">2</div>
+      <h3>Criar o Catálogo de Serviços (PDF ou Link)</h3>
+      <p>Listar os 3 serviços que Geisiane já faz — curadoria completa, consultoria de look para evento e reserva de peças — com descrição simples, o que está incluído e preço de cada um. Pode ser um PDF no Canva, uma página no Notion ou até um carrossel no Instagram. O formato não importa — a informação importa. Resolver a principal causa de perda de vendas.</p>
+      <span class="passo-deadline">→ Prioridade máxima · Criar esta semana</span>
+    </div>
+    <div class="passo-card">
+      <div class="passo-num">3</div>
+      <h3>Publicar o Primeiro Case de Curadoria</h3>
+      <p>Selecionar um cliente atendido recentemente, pedir autorização para usar as fotos e criar um carrossel mostrando o perfil da cliente (quem é, qual era o desafio) e os looks curados como solução. Essa publicação é a mais importante do perfil — combina prova social, demonstração de serviço e argumento de venda num único conteúdo.</p>
+      <span class="passo-deadline">→ Publicar nos próximos 7 dias</span>
+    </div>
+    <div class="passo-card">
+      <div class="passo-num">4</div>
+      <h3>Reestruturar o Linktree com o Catálogo</h3>
+      <p>Depois de criar o catálogo (passo 2), atualizar o Linktree com 4 links: Catálogo de Serviços (PDF ou link), Como Funciona (destaque do Instagram), Ver Looks Curados (destaque de clientes) e WhatsApp. Essa reorganização transforma o link da bio de um atalho genérico para um hub de conversão que qualifica e informa o cliente antes de qualquer conversa.</p>
+      <span class="passo-deadline">→ Fazer junto com o catálogo</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="cta-section">
+    <h2>O diagnóstico está pronto.<br>E agora?</h2>
+    <p>O Raio-X revelou os gargalos. O próximo passo é transformar esse diagnóstico em estrutura real — com catálogo, posicionamento e um processo que vende mesmo quando Geisiane não está disponível.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/5531975073862" class="btn-whatsapp" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.51 5.833L0 24l6.335-1.493A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.66-.49-5.2-1.348l-.373-.22-3.862.91.924-3.768-.242-.388A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Falar com a YM
+      </a>
+      <a href="#visao" class="btn-ghost">Revisar a Análise →</a>
+    </div>
+    <div class="next-service">
+      <div class="next-service-info">
+        <div class="next-service-label">Próximo Passo Recomendado</div>
+        <h4>Projeto Estratégico Completo</h4>
+        <p>Catálogo de serviços, bio e Linktree reestruturados, calendário editorial adaptado para tempo limitado e acompanhamento mensal para a Easy Chic.</p>
+      </div>
+      <div class="next-service-price">
+        <div class="price-label">A partir de</div>
+        <div class="price">Sob consulta</div>
+        <div class="price-label">Proposta personalizada</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <svg width="28" height="32" viewBox="0 0 100 110" fill="none">
+          <path d="M10 10 L50 60 L90 10" stroke="#3D5BFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="50" cy="90" r="12" fill="#3D5BFF"/>
+        </svg>
+        <span class="ym-text">YM Marketing & Negócios</span>
+      </div>
+      <p>Estratégia de marketing com inteligência. Da presença digital à captação real de clientes.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <a href="#">Raio-X Estratégico</a>
+      <a href="#">Projeto Estratégico</a>
+      <a href="#">Posicionamento</a>
+      <a href="#">Consultoria Mensal</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <a href="https://wa.me/5531975073862" target="_blank">WhatsApp</a>
+      <a href="https://instagram.com/ym_marketingenegocios" target="_blank">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 YM Marketing & Negócios · Raio-X Estratégico — Easy Chic · Confidencial</p>
+    <span class="footer-sig">Desenvolvido com estratégia por YM</span>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
